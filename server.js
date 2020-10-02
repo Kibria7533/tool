@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const passport = require("passport");
+// const passport = require("passport");
 const bp = require("body-parser");
 require("dotenv").config();
 
@@ -10,10 +10,10 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use(passport.initialize());
+// app.use(passport.initialize());
 app.use(bp.json());
 
-require("./middlewares/passport")(passport);
+// require("./middlewares/passport")(passport);
 
 
 
@@ -31,17 +31,17 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-// User Router Middleware
-app.use("/api/users", require("./routes/users"));
-app.use(require("./routes/googleuser"));
-app.use(require("./routes/facebookuser"));
-app.use(require("./routes/posts"));
-app.use(require("./routes/comments"));
-app.use(require("./routes/reletedposts"));
-app.use(require("./routes/menus"));
-app.use(require("./routes/questions"));
-app.use(require("./routes/courses"));
-app.use(require("./routes/teachers"));
+// // User Router Middleware
+// app.use("/api/users", require("./routes/users"));
+// app.use(require("./routes/googleuser"));
+// app.use(require("./routes/facebookuser"));
+// app.use(require("./routes/posts"));
+// app.use(require("./routes/comments"));
+// app.use(require("./routes/reletedposts"));
+// app.use(require("./routes/menus"));
+// app.use(require("./routes/questions"));
+// app.use(require("./routes/courses"));
+// app.use(require("./routes/teachers"));
 
 // app.route("/").get((req, res) => {
 //   res.send(
