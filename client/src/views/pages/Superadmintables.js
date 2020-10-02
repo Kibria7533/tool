@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header from './blog/Header';
+
 import './Dashbordmenu.css'
-import {Link,Route} from 'react-router-dom';
-import Forms from './Forms';
+import {Link} from 'react-router-dom';
+
 const Superadmintables = () => {
 
     const [data, setdata] = useState([])

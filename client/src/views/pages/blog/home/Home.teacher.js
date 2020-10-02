@@ -42,7 +42,7 @@ class Hometeacher extends Component {
                                 return (
                                     <div key={index} className="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.4s">
                                         <div className="faculty-div">
-                                            <img src={`./uploads/${item.image}`} className="img-rounded" style={{"height":"300px","width":"300px"}}/>
+                                            <img src={`./uploads/${item.image}`} className="img-rounded" style={{"height":"300px","width":"300px"}} alt="No  Found"/>
                                             <h3>{item.title} </h3>
                                             <hr />
                                 <h4>{item.degignation}</h4>

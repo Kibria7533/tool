@@ -1,37 +1,23 @@
 import React, { Component } from 'react';
-import {Link,Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {
     CButton,
     CCard,
     CCardBody,
-    CCardFooter,
+   
     CCardHeader,
     CCol,
-    CCollapse,
-    CDropdownItem,
-    CDropdownMenu,
-    CDropdownToggle,
-    CFade,
+   
     CForm,
     CFormGroup,
-    CFormText,
-    CValidFeedback,
-    CInvalidFeedback,
-    CTextarea,
+   
     CInput,
-    CInputFile,
-    CInputCheckbox,
-    CInputRadio,
-    CInputGroup,
-    CInputGroupAppend,
-    CInputGroupPrepend,
-    CDropdown,
-    CInputGroupText,
+    
     CLabel,
     CSelect,
     CRow,
-    CSwitch
+  
   } from '@coreui/react'
   import CIcon from '@coreui/icons-react'
  
@@ -56,11 +42,11 @@ class Forms extends Component {
   }
     selectchange=(e)=>{
        var name=e.target.name;
-       if(e.target.value=='1')
+       if(e.target.value==='1')
            this.setState({fetchtype:'add_simple_menus'});
-       else if(e.target.value=='2')
+       else if(e.target.value==='2')
          this.setState({fetchtype:'add_sub_menu_holder'});
-    else if(e.target.value=='3')
+    else if(e.target.value==='3')
             this.setState({fetchtype:'add_mega_menu_holder'});
 
     this.setState({[name]:e.target.value});

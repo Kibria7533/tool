@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
-import Login from '../login/Login';
-import Register from '../register/Register';
-import RecoverOrActive from '../RecoverOrActive';
-import Changepassword from '../Changepassword';
-import CheckandActive from '../CheckandActive';
-import Checkrecover from '../Checkrecover';
-import Logout from '../Logout';
-import Adminregister from '../Adminregister';
-import adminlogin from '../Adminlogin';
-import Superadminlogin from '../Superadminlogin';
-import Body from './Body';
-import Roothome from './home/Roothome';
+import {  NavLink } from 'react-router-dom';
+
 import axios from 'axios';
 
 class Header extends Component {
@@ -149,11 +138,11 @@ class Header extends Component {
 
            <div className="subnav">
               <button className="subnavbtn " id="dropdownMenu2" data-toggle="dropdown"><NavLink to="/"> <i className="fa fa-caret-down"></i></NavLink> </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button"><NavLink  to="/userlogin">Uer Login</NavLink></button>
-    <button class="dropdown-item" type="button"><NavLink  to="/userregister">User Register</NavLink></button>
-    <button class="dropdown-item" type="button"><NavLink  to="/adminregister">Become Writter?</NavLink></button>
-    <button class="dropdown-item" type="button"><NavLink  to="/adminlogin">Writter Login</NavLink></button>
+    <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button className="dropdown-item" type="button"><NavLink  to="/userlogin">Uer Login</NavLink></button>
+    <button className="dropdown-item" type="button"><NavLink  to="/userregister">User Register</NavLink></button>
+    <button className="dropdown-item" type="button"><NavLink  to="/adminregister">Become Writter?</NavLink></button>
+    <button className="dropdown-item" type="button"><NavLink  to="/adminlogin">Writter Login</NavLink></button>
   </div>
             </div>
 

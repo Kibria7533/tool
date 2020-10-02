@@ -1,37 +1,18 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   CButton,
   CCard,
   CCardBody,
-  CCardFooter,
-  CCardHeader,
+  
   CCol,
-  CCollapse,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
-  CFade,
-  CForm,
+  
   CFormGroup,
-  CFormText,
-  CValidFeedback,
-  CInvalidFeedback,
-  CTextarea,
-  CInput,
-  CInputFile,
-  CInputCheckbox,
-  CInputRadio,
-  CInputGroup,
-  CInputGroupAppend,
-  CInputGroupPrepend,
-  CDropdown,
-  CInputGroupText,
-  CLabel,
+ 
   CSelect,
   CRow,
-  CSwitch
+  
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
@@ -263,7 +244,7 @@ class AllQuestions extends Component {
     <CRow key={index}>
     <div  className="justify-content-center">
        <div className="p-2 my-2">
-      {q.img?<img src={`/uploads/${q.img}`} alt="image" size={{"width":"70px","heigth":"70px"}}/>:""}
+      {q.img?<img src={`/uploads/${q.img}`} alt="" size={{"width":"70px","heigth":"70px"}}/>:""}
       
        <br></br>
   <h5>{q.question}</h5>

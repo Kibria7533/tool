@@ -3,49 +3,31 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
     CButton,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
+   
     CModal,
     CModalBody,
     CModalFooter,
     CModalHeader,
     CModalTitle,
-    CCollapse,
-    CDropdownItem,
-    CDropdownMenu,
-    CDropdownToggle,
-    CFade,
+   
+   
     CForm,
     CFormGroup,
-    CFormText,
-    CValidFeedback,
-    CInvalidFeedback,
-    CTextarea,
+   
     CInput,
-    CInputFile,
-    CInputCheckbox,
-    CInputRadio,
-    CInputGroup,
-    CInputGroupAppend,
-    CInputGroupPrepend,
-    CDropdown,
-    CInputGroupText,
+   
     CLabel,
-    CSelect,
-    CRow,
-    CSwitch
+   
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import { Link, Route } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 const Homeinfo = () => {
     const [data, setdata] = useState([])
     const [title, settitle] = useState("")
     const [text, settext] = useState("")
     const [myImage, setimage] = useState(null)
     const [effect, seteffect] = useState(false);
-    const [modal, setModal] = useState(true)
+    
     const [large, setLarge] = useState(false)
     const [courseLink, setUrl] = useState("");
     const [id, setId] = useState("");
@@ -207,7 +189,7 @@ const Homeinfo = () => {
                                     </td>
                                     <td><a href={`${item.courseLink}`} target="_blank">Check it</a>
                                     </td>
-                                    <td><img src={`./uploads/${item.image}`} width="50" height="50" /></td>
+                                    <td><img src={`./uploads/${item.image}`} width="50" height="50"alt="" /></td>
                                     <td> <button type="submit" className="btn btn-primary"onClick={()=>setedit(item._id,item.title,item.text,item.courseLink,item.image)} className="mr-1">Edit</button><button type="button" className="mr-1" onClick={()=>deletefn(item._id)}>Delete</button> </td>
 
 

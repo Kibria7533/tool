@@ -3,42 +3,24 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
     CButton,
-    CCard,
-    CCardBody,
-    CCardHeader,
-    CCol,
+   
     CModal,
     CModalBody,
     CModalFooter,
     CModalHeader,
     CModalTitle,
-    CCollapse,
-    CDropdownItem,
-    CDropdownMenu,
-    CDropdownToggle,
-    CFade,
+    
+    
     CForm,
     CFormGroup,
-    CFormText,
-    CValidFeedback,
-    CInvalidFeedback,
-    CTextarea,
+    
     CInput,
-    CInputFile,
-    CInputCheckbox,
-    CInputRadio,
-    CInputGroup,
-    CInputGroupAppend,
-    CInputGroupPrepend,
-    CDropdown,
-    CInputGroupText,
+  
     CLabel,
-    CSelect,
-    CRow,
-    CSwitch
+   
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import { Link, Route } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 const Teachersinfo = () => {
     const [data, setdata] = useState([])
     const [title, settitle] = useState("")
@@ -47,7 +29,7 @@ const Teachersinfo = () => {
     const [websites, setWebsite] = useState("");
     const [myImage, setimage] = useState(null)
     const [effect, seteffect] = useState(false);
-    const [modal, setModal] = useState(true)
+    
     const [large, setLarge] = useState(false)
     const [id, setId] = useState("");
     const [primary, setPrimary] = useState(false)

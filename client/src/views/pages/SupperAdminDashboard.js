@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header from './blog/Header';
+
 import './Dashbordmenu.css'
-import { Link, Route } from 'react-router-dom';
-import Forms from './Forms';
+import { Link } from 'react-router-dom';
+
 import {
     CButton,
-    CCard,
-    CCardBody,
-    CCardHeader,
+   
     CCol,
     CModal,
     CModalBody,
@@ -17,38 +15,22 @@ import {
     CModalTitle,
 
 
-    CCollapse,
-    CDropdownItem,
-    CDropdownMenu,
-    CDropdownToggle,
-    CFade,
-    CForm,
+    
     CFormGroup,
-    CFormText,
-    CValidFeedback,
-    CInvalidFeedback,
+   
     CTextarea,
     CInput,
-    CInputFile,
-    CInputCheckbox,
-    CInputRadio,
-    CInputGroup,
-    CInputGroupAppend,
-    CInputGroupPrepend,
-    CDropdown,
-    CInputGroupText,
+  
     CLabel,
-    CSelect,
-    CRow,
-    CSwitch
+   
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
+
 
 const WritterDashboard = () => {
 
     const [data, setdata] = useState([])
     const [effect, seteffect] = useState(false);
-    const [modal, setModal] = useState(true)
+   
     const [large, setLarge] = useState(false)
     const [Topic, setTopic] = useState("")
     const [ch, setCh] = useState("")

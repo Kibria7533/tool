@@ -1,37 +1,19 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   CButton,
   CCard,
   CCardBody,
-  CCardFooter,
-  CCardHeader,
+ 
   CCol,
-  CCollapse,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
-  CFade,
-  CForm,
+
+  
   CFormGroup,
-  CFormText,
-  CValidFeedback,
-  CInvalidFeedback,
-  CTextarea,
-  CInput,
-  CInputFile,
-  CInputCheckbox,
-  CInputRadio,
-  CInputGroup,
-  CInputGroupAppend,
-  CInputGroupPrepend,
-  CDropdown,
-  CInputGroupText,
-  CLabel,
+ 
   CSelect,
-  CRow,
-  CSwitch
+  CRow
+ 
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
@@ -287,7 +269,7 @@ class makequestion extends Component {
    {this.state.data.map((q,index)=>{
   return(
     <div key={index} >
-     {q.img?<img src={`/uploads/${q.img}`} alt="image" size={{"width":"100px","heigth":"100px"}}/>:""}
+     {q.img?<img src={`/uploads/${q.img}`} alt="" size={{"width":"100px","heigth":"100px"}}/>:""}
   <CCardBody>{q.question}</CCardBody>
 
     </div>

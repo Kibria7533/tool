@@ -20,7 +20,7 @@ require("./middlewares/passport")(passport);
 
 
 
-const uri = process.env.ATLAS_URI;
+const uri = process.env.ATLAS_URI || 'mongodb://localhost:27017/node-auth';
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -32,16 +32,16 @@ connection.once("open", () => {
 });
 
 // User Router Middleware
-// app.use("/api/users", require("./routes/users"));
-// app.use(require("./routes/googleuser"));
-// app.use(require("./routes/facebookuser"));
-// app.use(require("./routes/posts"));
-// app.use(require("./routes/comments"));
-// app.use(require("./routes/reletedposts"));
-// app.use(require("./routes/menus"));
-// app.use(require("./routes/questions"));
-// app.use(require("./routes/courses"));
-// app.use(require("./routes/teachers"));
+app.use("/api/users", require("./routes/users"));
+app.use(require("./routes/googleuser"));
+app.use(require("./routes/facebookuser"));
+app.use(require("./routes/posts"));
+app.use(require("./routes/comments"));
+app.use(require("./routes/reletedposts"));
+app.use(require("./routes/menus"));
+app.use(require("./routes/questions"));
+app.use(require("./routes/courses"));
+app.use(require("./routes/teachers"));
 
 // app.route("/").get((req, res) => {
 //   res.send(
@@ -51,6 +51,7 @@ connection.once("open", () => {
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 }
 
 app.listen(port, () => {

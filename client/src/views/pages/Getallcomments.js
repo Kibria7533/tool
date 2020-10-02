@@ -1,34 +1,15 @@
-import React, { Component,useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   CButton,
   CCard,
   CCardBody,
-  CCardFooter,
   CCardHeader,
   CCol,
-  CCollapse,
-  CDropdownItem,
-  CDropdownMenu,
-  CDropdownToggle,
-  CFade,
-  CForm,
+  
   CFormGroup,
-  CFormText,
-  CValidFeedback,
-  CInvalidFeedback,
-  CTextarea,
-  CInput,
-  CInputFile,
-  CInputCheckbox,
-  CInputRadio,
-  CInputGroup,
-  CInputGroupAppend,
-  CInputGroupPrepend,
-  CDropdown,
-  CInputGroupText,
-  CLabel,
+  
   CModal,
   CModalBody,
   CModalFooter,
@@ -36,9 +17,9 @@ import {
   CModalTitle,
   CSelect,
   CRow,
-  CSwitch
+ 
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+
 
 class Getallcomments extends Component {
     constructor(){
@@ -76,7 +57,7 @@ class Getallcomments extends Component {
   
     selectchange= async (e)=>{
         this.setState({show:false,chapter:"",chapters:"",reletedposts:[],comments:[],showreletedpostform:false})
-        if(e.target.value=='0')
+        if(e.target.value==='0')
         {
             alert('Please Select A Topic')
         }
@@ -163,7 +144,7 @@ class Getallcomments extends Component {
     reletedselectchange=async(e)=>{
     //  this.setState({relposttopic:e.target.value})
       this.setState({relchapter:"",relchapters:[]})
-        if(e.target.value=='0')
+        if(e.target.value==='0')
         {
             alert('Please Select A Topic')
         }
