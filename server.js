@@ -32,16 +32,16 @@ connection.once("open", () => {
 });
 
 // User Router Middleware
-// app.use("/api/users", require("./routes/users"));
-// app.use(require("./routes/googleuser"));
-// app.use(require("./routes/facebookuser"));
-// app.use(require("./routes/posts"));
-// app.use(require("./routes/comments"));
-// app.use(require("./routes/reletedposts"));
-// app.use(require("./routes/menus"));
-// app.use(require("./routes/questions"));
-// app.use(require("./routes/courses"));
-// app.use(require("./routes/teachers"));
+app.use("/api/users", require("./routes/users"));
+app.use(require("./routes/googleuser"));
+app.use(require("./routes/facebookuser"));
+app.use(require("./routes/posts"));
+app.use(require("./routes/comments"));
+app.use(require("./routes/reletedposts"));
+app.use(require("./routes/menus"));
+app.use(require("./routes/questions"));
+app.use(require("./routes/courses"));
+app.use(require("./routes/teachers"));
 
 // app.route("/").get((req, res) => {
 //   res.send(
