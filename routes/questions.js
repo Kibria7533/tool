@@ -1,6 +1,6 @@
 const path = require("path");
 const multer = require("multer");
-const Ques = require('../models/questions');
+const Ques = require('../models/Questions');
 const router = require('express').Router();
 const express=require('express');
 
