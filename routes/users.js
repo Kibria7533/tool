@@ -162,6 +162,7 @@ router.get('/active/:activeToken', function (req, res, next) {
 
     // check if the expire time > the current time       activeExpires: {$gt: Date.now()}
   }, function (err, user) {
+    console.log(user);
     if (err) return next(err);
 
     // invalid activation code
@@ -172,8 +173,10 @@ router.get('/active/:activeToken', function (req, res, next) {
       });
     }
     user.confirmed = true;
-    user.save();
-    res.redirect(`http://localhost:3000/userlogin`);
+    user.save().then(ok=>{
+      res.redirect(`https://tooltool.herokuapp.com/userlogin`);
+    })
+   
   });
 });
 

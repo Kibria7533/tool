@@ -143,7 +143,7 @@ const userLogin = async (userCreds, role, res) => {
     
   } 
 
-  if(user && user.confirmed==false){
+  if(user && user.confirmed===false){
     return res.status(404).json({
       message: "Registerd but not confirmed",
       success: false
