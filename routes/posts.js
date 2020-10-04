@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const Posts = require("../models/Posts");
+const {userAuth, checkRole } = require("../utils/Auth");
 
-router.post('/createtopic', (req, res) => {
+router.post('/createtopic',userAuth,
+checkRole(["superadmin"]), (req, res) => {
   const { Topic } = req.body;
   const newpost = new Posts({
     "Topic": Topic
@@ -15,27 +17,32 @@ router.post('/createtopic', (req, res) => {
     msg: "a topic has been created"
   });
 })
-router.get('/getalltopics', async (req, res) => {
+router.get('/getalltopics',userAuth,
+checkRole(["superadmin"]), async (req, res) => {
   const data = await Posts.find({}, { Topic: 1 })
   res.send(data);
 });
-router.get('/getall', async (req, res) => {
+router.get('/getall',userAuth,checkRole(["admin", "superadmin"]), 
+ async (req, res) => {
   const alldata = await Posts.find({}, { comments: 0, reletedposts: 0, _id: 0 })
   res.send(alldata);
 
 });
-router.post('/removetopic', async (req, res) => {
+router.post('/removetopic',userAuth,
+checkRole(["superadmin"]), async (req, res) => {
   const { Topic } = req.body;
   const data = await Posts.deleteOne({ "Topic": Topic })
   res.send(data);
 })
-router.post('/edittopic', async (req, res) => {
+router.post('/edittopic',userAuth,
+checkRole(["superadmin"]), async (req, res) => {
   const { Topic, newtopic } = req.body;
   await Posts.updateOne({ "Topic": Topic },
     { $set: { "Topic": newtopic } });
 })
 
-router.post('/createchapter',  (req, res) => {
+router.post('/createchapter',userAuth,
+checkRole(["admin", "superadmin"]),  (req, res) => {
   const { Topic, ch, intro, code, blogtext } = req.body;
   Posts.updateOne({ "Topic": Topic },
     { $push: { posts: { "ch": ch, "intro": intro, "code": code, "blogtext": blogtext } } }).then(suc=>{
@@ -52,7 +59,8 @@ router.post('/createchapter',  (req, res) => {
    
    
 })
-router.post('/updatechapter', async (req, res) => {
+router.post('/updatechapter',userAuth,
+checkRole(["admin", "superadmin"]), async (req, res) => {
   const { Topic, ch, ech, eintro, ecode, eblogtext } = req.body;
   const data = await Posts.updateOne({ "Topic": Topic, "posts.ch": ch },
     { $set: { "posts.$.ch": ech, "posts.$.intro": eintro, "posts.$.code": ecode, "posts.$.blogtext": eblogtext } })
@@ -61,7 +69,8 @@ router.post('/updatechapter', async (req, res) => {
 
 })
 
-router.post('/deletechapter', async (req, res) => {
+router.post('/deletechapter',userAuth,
+checkRole(["admin", "superadmin"]), async (req, res) => {
   const { topic, ch } = req.body;
   const data = await Posts.updateOne({ "Topic": topic, "posts.ch": ch },
     { $pull: { posts: { "ch": ch } } })

@@ -1,6 +1,6 @@
 const router=require('express').Router();
 const Posts = require("../models/Posts");
-
+const {userAuth, checkRole } = require("../utils/Auth");
 router.post('/allcomments',async(req,res)=>{
     const {Topic,ch}=req.body;
     const data=await Posts.find({"Topic" : Topic},
@@ -20,7 +20,8 @@ res.send(com);
 
 
 })
-router.post('/deleteacomment',async(req,res)=>{
+router.post('/deleteacomment',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
   const {topic,ch,username,comment}=req.body;
   const deleted=await Posts.updateOne({"Topic":topic,"comments.ch":ch},
   {$pull:{"comments.$.comment":{"username":username,"comment":comment}}})

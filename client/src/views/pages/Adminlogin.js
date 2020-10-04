@@ -19,6 +19,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import Header from './blog/Header';
+import { Redirect } from 'react-router-dom';
 
 class adminlogin extends Component
  {
@@ -28,6 +29,7 @@ class adminlogin extends Component
       username:"",
       password:"",
       mesg:"",
+      redirect: false,
     
     }
   }
@@ -48,16 +50,22 @@ formsubmit=async (data)=>{
       'Content-Type':'application/json'
     }
   }).then(data=>{
-    localStorage.setItem('auth',data.data);
-    this.props.history.push("/");
+    localStorage.setItem('auth',data.data.token);
+    localStorage.setItem('userrole',data.data.role);
+    localStorage.setItem('username',data.data.username);
+    console.log(data.data);
+    this.setState({redirect:true});
   }).catch(err=>{
     this.setState({mesg:err.response.data.message})
     this.notify();
-    console.log(err.response.data.message)
+    console.log(err.response)
   })
 }
 
    render(){
+    if (this.state.redirect) {
+      return (<Redirect to={{ pathname: '/writterdashboard' }} />)
+    }
     return (
       <div>
         <Header/>
@@ -69,7 +77,7 @@ formsubmit=async (data)=>{
                 <CCard className="p-4">
                   <CCardBody>
                     <CForm onSubmit={this.formsubmit}>
-                      <h1>Admin Login</h1>
+                      <h1>Writter Login</h1>
                       <p className="text-muted">Sign In to your account</p>
                       <CInputGroup className="mb-3">
                         <CInputGroupPrepend>

@@ -3,6 +3,7 @@ const multer = require("multer");
 const Ques = require('../models/Questions');
 const router = require('express').Router();
 const express=require('express');
+const {userAuth, checkRole } = require("../utils/Auth");
 
 const storage = multer.diskStorage({
    destination: "./public/uploads/",
@@ -17,7 +18,8 @@ const upload = multer({
 }).single("myImage");
 
 
-router.post('/upload', function (req, res) {
+router.post('/upload',userAuth,
+checkRole(["superadmin"]), function (req, res) {
 
    upload(req, res, function (err) {
      
@@ -41,7 +43,8 @@ router.post('/upload', function (req, res) {
 
    })
 })
-router.post('/getallquestions',async(req,res)=>{
+router.post('/getallquestions',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
 
    const {classname,dept,sub,ch,Type}=req.body;
    

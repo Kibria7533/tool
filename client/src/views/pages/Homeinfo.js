@@ -40,7 +40,8 @@ const Homeinfo = () => {
         await axios.delete(`http://localhost:5000/deletecourse/${id}`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
             
@@ -72,11 +73,13 @@ const Homeinfo = () => {
 
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data',
+                'auth':localStorage.getItem('auth')
             }
         };
 
         axios.post("/addcourse", formData, config).then(data => {
+           
             setUrl("");
             setimage("");
             settitle("");
@@ -103,7 +106,8 @@ const Homeinfo = () => {
 
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data',
+                'auth':localStorage.getItem('auth')
             }
         };
 
@@ -128,7 +132,8 @@ const Homeinfo = () => {
         axios.get(`http://localhost:5000/getcourse`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
             console.log(data.data);

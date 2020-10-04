@@ -23,7 +23,8 @@ class Homecontact extends Component {
     await  axios.post(`http://localhost:5000/mail`,this.state,{
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
         }
     }).then(data=>{
       this.setState({name:"",email:"",messege:""});

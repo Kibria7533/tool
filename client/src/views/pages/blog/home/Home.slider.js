@@ -4,6 +4,7 @@ class Homeslider extends Component {
     render() {
         return (
             <div>
+                  
  <section id="about" className="parallax-section">
      <div className="container">
           <div className="row">

@@ -11,10 +11,13 @@ class Homecourse extends Component {
     axios.get(`http://localhost:5000/getcourse`, {
       headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          
+            'auth':localStorage.getItem('auth')
+
       }
   }).then(data=> {
-      console.log(data.data);
+    
       this.setState({data:data.data})
 
   }).catch(err => {

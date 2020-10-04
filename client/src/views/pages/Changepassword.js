@@ -35,7 +35,8 @@ formsubmit=async (data)=>{
   await axios.post(`http://localhost:5000/api/users/forgotpassword/forms/${this.props.match.params.token}`,this.state,{
     headers:{
       'Accept':'application/json',
-      'Content-Type':'application/json'
+      'Content-Type':'application/json',
+      'auth':localStorage.getItem('auth')
     }
   }).then(data=>{
     

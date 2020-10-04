@@ -5,6 +5,7 @@ const multer = require("multer");
 var nodemailer = require('nodemailer');
 const {PASSWORD}=require('../config');
 const {body, check, validationResult } = require('express-validator');
+const {userAuth, checkRole } = require("../utils/Auth");
 
 const storage = multer.diskStorage({
     destination: "./public/uploads/",
@@ -19,7 +20,8 @@ const storage = multer.diskStorage({
  }).single("myImage");
  
 
- router.post('/addteacher', function (req, res) {
+ router.post('/addteacher',userAuth,
+ checkRole([ "superadmin"]),function (req, res) {
 
     upload(req, res, function (err) {
       
@@ -40,7 +42,9 @@ const storage = multer.diskStorage({
     })
  })
 
- router.get('/getteacher',async(req,res)=>{
+ router.get('/getteacher',
+ userAuth,
+ checkRole(["superadmin"]),async(req,res)=>{
     const data=await Teacher.find({});
     res.send(data);
  })
@@ -50,7 +54,9 @@ const storage = multer.diskStorage({
    res.send(data);
 })
 
-router.post('/editteacher/:id', function (req, res) {
+router.post('/editteacher/:id',
+userAuth,
+checkRole(["superadmin"]), function (req, res) {
 
    upload(req, res,async (err) =>{
       

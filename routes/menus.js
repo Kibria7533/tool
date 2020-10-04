@@ -2,8 +2,10 @@ const router = require('express').Router();
 const Mymenus = require('../models/Menus');
 const Posts = require("../models/Posts");
 const {body, check, validationResult } = require('express-validator');
+const {userAuth, checkRole } = require("../utils/Auth");
 
-router.post('/add_simple_menus', async (req, res) => {
+router.post('/add_simple_menus',userAuth,
+checkRole(["superadmin"]), async (req, res) => {
 
     const {Topic}=req.body;
     await Mymenus.updateOne({},
@@ -48,7 +50,8 @@ router.post('/add_simple_menus', async (req, res) => {
        
  
 })
-router.post('/add_sub_menu_holder', async (req, res) => {
+router.post('/add_sub_menu_holder',userAuth,
+checkRole(["superadmin"]), async (req, res) => {
     const {Topic}=req.body;
     await Mymenus.updateOne({},
         { $push: { menuwithsub: { "name": Topic } } }).then(data => {
@@ -77,7 +80,8 @@ router.post('/add_sub_menu_holder', async (req, res) => {
         })
 
 })
-router.post('/add_submenu_on_submenuholder',[ check('name').not().isEmpty().withMessage('Fullname can not be empty')], async (req, res) => {
+router.post('/add_submenu_on_submenuholder',userAuth,
+checkRole(["superadmin"]),[ check('name').not().isEmpty().withMessage('Fullname can not be empty')], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         var errorResponse = errors.array({ onlyFirstError: true });
@@ -100,7 +104,8 @@ router.post('/add_submenu_on_submenuholder',[ check('name').not().isEmpty().with
         })
 
 })
-router.post('/add_mega_menu_holder', async (req, res) => {
+router.post('/add_mega_menu_holder',userAuth,
+checkRole(["superadmin"]), async (req, res) => {
     const {Topic}=req.body;
     await Mymenus.updateOne({},
         { $push: { menuwithmega: { "name": Topic } } }).then(data => {
@@ -127,7 +132,8 @@ router.post('/add_mega_menu_holder', async (req, res) => {
         })
 
 })
-router.post('/add_sub_menu_on_megamenu_holder',[ check('name').not().isEmpty().withMessage('Fullname can not be empty')], async (req, res) => {
+router.post('/add_sub_menu_on_megamenu_holder',userAuth,
+checkRole(["superadmin"]),[ check('name').not().isEmpty().withMessage('Fullname can not be empty')], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         var errorResponse = errors.array({ onlyFirstError: true });
@@ -151,7 +157,8 @@ router.post('/add_sub_menu_on_megamenu_holder',[ check('name').not().isEmpty().w
         })
 
 })
-router.get('/create_menus_scheama', async (req, res) => {
+router.get('/create_menus_scheama',userAuth,
+checkRole(["superadmin"]), async (req, res) => {
         const me = new Mymenus({});
         me.save((err, data) => {
             if (err)
@@ -163,11 +170,13 @@ router.get('/create_menus_scheama', async (req, res) => {
 
 })
 
-router.get('/getallmegamenuholder',async(req,res)=>{
+router.get('/getallmegamenuholder',userAuth,
+checkRole(["admin", "superadmin"]),async(req,res)=>{
     const megamenus=await Mymenus.find({},{"menuwithmega.name":1})
     res.send(megamenus);
 })
-router.get('/getallsubmenuholder',async(req,res)=>{
+router.get('/getallsubmenuholder',userAuth,
+checkRole(["admin", "superadmin"]),async(req,res)=>{
     const submenus=await Mymenus.find({},{"menuwithsub.name":1})
     res.send(submenus);
 })
@@ -190,31 +199,36 @@ router.get('/only_menus',async(req,res)=>{
     const simplemenus=await Mymenus.find({},{menus:1});
     res.send(simplemenus);
 })
-router.post('/deleteasimplemenue',async(req,res)=>{
+router.post('/deleteasimplemenue',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
     const {topic}=req.body;
     const data=await Mymenus.updateOne({},{$pull:{"menus":topic}})
     res.send(data);
 })
 
-router.post('/delete_a_subholeder',async(req,res)=>{
+router.post('/delete_a_subholeder',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
     const {subholder}=req.body;
     const data=await Mymenus.updateOne({},
         { $pull: { menuwithsub: { "name": subholder} } })
     res.send(data);
 })
-router.post('/delete_a_megaholder',async(req,res)=>{
+router.post('/delete_a_megaholder',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
     const {megaholder}=req.body;
     const data=await Mymenus.updateOne({},
         { $pull: { menuwithmega: { "name": megaholder} } })
     res.send(data);
 })
-router.post('/delete_a_sub_submenu',async(req,res)=>{
+router.post('/delete_a_sub_submenu',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
              const {submenuholder,submenu}=req.body;
     const data=await Mymenus.updateOne({"menuwithsub.name":submenuholder},
         {$pull:{"menuwithsub.$.submenus":submenu}})
         res.send(data);
 })
-router.post('/delete_a_sub_megamenu',async(req,res)=>{
+router.post('/delete_a_sub_megamenu',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
     const {megamenuholder,submenu}=req.body;
 const data=await Mymenus.updateOne({"menuwithmega.name":megamenuholder},
 {$pull:{"menuwithmega.$.submenus":submenu}})

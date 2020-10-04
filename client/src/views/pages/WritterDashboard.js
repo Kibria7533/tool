@@ -44,7 +44,8 @@ const WritterDashboard = () => {
         await axios.post(`http://localhost:5000/deletechapter`, { topic, ch }, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
             console.log(data);
@@ -64,7 +65,8 @@ const WritterDashboard = () => {
         await axios.post(`http://localhost:5000/getchapter`, { Topic, ch }, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
             console.log(data.data);
@@ -99,7 +101,8 @@ const saveedit=async ()=>{
 },{
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
         }
     }).then(data => {
        setLarge(!large);
@@ -116,7 +119,8 @@ const saveedit=async ()=>{
         axios.get(`http://localhost:5000/getall`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(reletedval => {
 

@@ -43,7 +43,8 @@ class Getallcomments extends Component {
         axios.get(`http://localhost:5000/getalltopics`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(val => {
             
@@ -67,7 +68,8 @@ class Getallcomments extends Component {
             await axios.post(`http://localhost:5000/allchapter/${e.target.value}`, {
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'auth':localStorage.getItem('auth')
                 }
             }).then(val => {
                 
@@ -86,7 +88,8 @@ class Getallcomments extends Component {
         await axios.post(`http://localhost:5000/allcomments`,{"Topic":topic,"ch":e.target.value}, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(async (val) => {
             
@@ -98,7 +101,8 @@ class Getallcomments extends Component {
            await axios.post(`http://localhost:5000/reletedposts`,{"Topic":topic,"ch":this.state.chapter}, {
           headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'auth':localStorage.getItem('auth')
           }
       }).then(data=> {
           
@@ -126,7 +130,8 @@ class Getallcomments extends Component {
     await axios.post(`http://localhost:5000/reletedposts`,{"Topic":topic,"ch":chapter}, {
       headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth':localStorage.getItem('auth')
       }
   }).then(data=> {
       
@@ -154,7 +159,8 @@ class Getallcomments extends Component {
               await axios.post(`http://localhost:5000/allchapter/${e.target.value}`, {
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'auth':localStorage.getItem('auth')
                 }
             }).then(val => {
                 
@@ -178,7 +184,8 @@ class Getallcomments extends Component {
       await axios.post(`http://localhost:5000/addreletedpost`,{"relted":relchapter,"Topic":topic,"ch":chapter} ,{
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
         }
     }).then(val => {
         
@@ -201,14 +208,16 @@ class Getallcomments extends Component {
       await axios.post(`http://localhost:5000/deleteacomment`,{"topic":topic,"username":username,"ch":chapter,"comment":comment} ,{
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
         }
     }).then(async(val) => {
         
       await axios.post(`http://localhost:5000/allcomments`,{"Topic":topic,"ch":chapter}, {
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
         }
     }).then(data=>{
       if(data.data.length)
@@ -231,14 +240,16 @@ class Getallcomments extends Component {
       await axios.post(`http://localhost:5000/deleteareletedpost`,{"topic":topic,"reletedpost":reletedpost,"ch":chapter} ,{
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
         }
     }).then(async(val) => {
         
       await axios.post(`http://localhost:5000/reletedposts`,{"Topic":topic,"ch":chapter}, {
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
         }
     }).then(data=> {
         

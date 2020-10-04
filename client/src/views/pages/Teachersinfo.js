@@ -41,7 +41,8 @@ const Teachersinfo = () => {
         await axios.delete(`http://localhost:5000/deleteteacher/${id}`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
 
@@ -77,7 +78,8 @@ const Teachersinfo = () => {
 
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data',
+                'auth':localStorage.getItem('auth')
             }
         };
 
@@ -109,7 +111,8 @@ const Teachersinfo = () => {
 
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data',
+                'auth':localStorage.getItem('auth')
             }
         };
 
@@ -135,7 +138,8 @@ const Teachersinfo = () => {
         axios.get(`http://localhost:5000/getteacher`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
             console.log(data.data);

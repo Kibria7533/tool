@@ -20,7 +20,8 @@ class writters extends Component {
         axios.get(`http://localhost:5000/api/users/getallwritter`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(reletedval => {
             // console.log(reletedval.data);
@@ -38,7 +39,8 @@ class writters extends Component {
         axios.post(`http://localhost:5000/api/users/getallwritter`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(reletedval => {
             // console.log(reletedval.data);
@@ -55,7 +57,8 @@ class writters extends Component {
         axios.post(`http://localhost:5000/api/users/deletewritter`,{"id":id}, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
             this.componentDidMount();
@@ -70,7 +73,8 @@ class writters extends Component {
         await axios.post(`http://localhost:5000/api/users/change_to_user`,{"id":id}, {
              headers: {
                  'Accept': 'application/json',
-                 'Content-Type': 'application/json'
+                 'Content-Type': 'application/json',
+                 'auth':localStorage.getItem('auth')
              }
          }).then(data => {
              // console.log(reletedval.data);

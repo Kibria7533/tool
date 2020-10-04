@@ -35,7 +35,8 @@ class Body extends Component {
     await axios.post(`http://localhost:5000/getchapter`, { "Topic": topic, "ch": chname }, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(val => {
       if(val.data.length){
@@ -51,6 +52,8 @@ class Body extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
+        ,
+            'auth':localStorage.getItem('auth')
       }
     }).then(commentval => {
       if(commentval.data[0].comments.length)
@@ -66,6 +69,8 @@ class Body extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
+        ,
+            'auth':localStorage.getItem('auth')
       }
     }).then(reletedval => {
       
@@ -83,7 +88,8 @@ class Body extends Component {
     await axios.post(`http://localhost:5000/allchapter/${this.state.topic}`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
      
@@ -103,7 +109,8 @@ class Body extends Component {
     await axios.post(`http://localhost:5000/allchapter/${topic.match.params.html}`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
      

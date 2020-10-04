@@ -94,7 +94,8 @@ router.post("/register-super-admin", async (req, res) => {
 
 // Users Login Route
 router.post("/login-user", async (req, res) => {
-  await userLogin(req.body, "user", res);
+  console.log(req.body);
+await userLogin(req.body, "user", res);
 });
 
 // Admin Login Route
@@ -172,7 +173,7 @@ router.get('/active/:activeToken', function (req, res, next) {
     }
     user.confirmed = true;
     user.save();
-    res.redirect(307, `http://localhost:3000`);
+    res.redirect(`http://localhost:3000/userlogin`);
   });
 });
 
@@ -259,7 +260,8 @@ router.post('/forgotpassword/forms/:forgotpasswordtoken', body('password_confirm
     await user.save();
   });
 })
-router.get('/getalluser',async(req,res)=>{
+router.get('/getalluser',userAuth,
+checkRole(["superadmin"]),async(req,res)=>{
   const users=await User.find({});
   res.send(users);
 })

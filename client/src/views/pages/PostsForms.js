@@ -57,7 +57,8 @@ class Forms extends Component {
     await axios.get(`http://localhost:5000/getallmegamenuholder`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       if(data.data.length)
@@ -69,7 +70,8 @@ class Forms extends Component {
     await axios.get(`http://localhost:5000/getallsubmenuholder`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       if(data.data.length)
@@ -81,7 +83,8 @@ class Forms extends Component {
     await axios.get(`http://localhost:5000/only_menus`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       if(data.data.length)
@@ -118,7 +121,8 @@ class Forms extends Component {
       await axios.post(`http://localhost:5000/get_particuler_submenus`, { "topic": topicholder }, {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth':localStorage.getItem('auth')
         }
       }).then(data => {
         
@@ -130,7 +134,8 @@ class Forms extends Component {
       await axios.post(`http://localhost:5000/get_particuler_mega_submenus`, { "topic": topicholder }, {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth':localStorage.getItem('auth')
         }
       }).then(data => {
         if(data.data.length)
@@ -151,7 +156,8 @@ class Forms extends Component {
     await axios.post(`http://localhost:5000/createchapter`, { "Topic": topic, "ch": chapter, "intro": contentinput, "code": codeinput, "blogtext": longdescriptioninput }, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       console.log(data.data);

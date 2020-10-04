@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
  const passport = require("passport");
 const bp = require("body-parser");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
  app.use(passport.initialize());
 app.use(bp.json());
+app.use(express.static(path.join(__dirname, 'public')))
 
 require("./middlewares/passport")(passport);
 
@@ -23,7 +25,6 @@ require("./middlewares/passport")(passport);
 const uri = process.env.ATLAS_URI || 'mongodb://localhost:27017/node-auth';
 mongoose.connect(uri, {
   useNewUrlParser: true,
-  useCreateIndex: true,
   useUnifiedTopology: true,
 });
 const connection = mongoose.connection;
@@ -52,11 +53,17 @@ app.use(require("./routes/teachers"));
 if (process.env.NODE_ENV === "production") {
 
   app.use(express.static("client/build"));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client','build','index.html'))
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'))
 })
 }
-
+app.get('/*', function(req, res) {   
+  res.sendFile(path.join(__dirname, 'client/public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 app.listen(port, () => {
   console.log(`Server is running on a port: ${port}`);
 });

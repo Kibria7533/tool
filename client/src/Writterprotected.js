@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-class ProtectedRoute extends React.Component {
+class Writterprotected extends React.Component {
     token=localStorage.getItem('auth');
     render() {
         const Component = this.props.component;
@@ -9,17 +9,16 @@ class ProtectedRoute extends React.Component {
         const username=localStorage.getItem('username');
         const role=localStorage.getItem('userrole');
         let isAuthenticated=false;
-        
 
-        if((token && role=="user")||(token && role=="admin")||(token && role=="superadmin"))
+        if((token && role=="admin")||(token && role=="superadmin"))
         isAuthenticated = true;        
         return isAuthenticated ? ( 
             <Component />
         ) : (
-            <Redirect to={{ pathname: '/userlogin' }} />
+            <Redirect to={{ pathname: '/adminlogin' }} />
         );
         
     }
 }
 
-export default ProtectedRoute;
+export default Writterprotected;

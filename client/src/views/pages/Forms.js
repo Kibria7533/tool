@@ -56,7 +56,8 @@ class Forms extends Component {
       await axios.get(`http://localhost:5000/getallmegamenuholder`, {
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
           }
         }).then(data=>{
           if(data.data.length)
@@ -68,7 +69,8 @@ class Forms extends Component {
       await axios.get(`http://localhost:5000/getallsubmenuholder`, {
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth':localStorage.getItem('auth')
           }
         }).then(data=>{
            if(data.data.length)
@@ -86,7 +88,8 @@ class Forms extends Component {
               }, {
                 headers: {
                   'Accept': 'application/json',
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'auth':localStorage.getItem('auth')
                 }
               }).then(re=>{
                 
@@ -109,7 +112,8 @@ class Forms extends Component {
         await axios.post(`http://localhost:5000/add_sub_menu_on_megamenu_holder`,{"name":megaholderselect,"Topic":megamenutopic}, {
             headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'auth':localStorage.getItem('auth')
             }
           }).then(data=>{
             this.setState({megamenutopic:""});
@@ -128,7 +132,8 @@ class Forms extends Component {
         await axios.post(`http://localhost:5000/add_submenu_on_submenuholder`,{"name":subholderselect,"Topic":submenutopic}, {
             headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'auth':localStorage.getItem('auth')
             }
           }).then(data=>{
             this.setState({submenutopic:""});

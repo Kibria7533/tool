@@ -60,7 +60,8 @@ class makequestion extends Component {
     "number":this.state.number},{
       headers:{
         'Accept':'application/json',
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data=>{
       this.setState({

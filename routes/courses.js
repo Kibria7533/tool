@@ -3,6 +3,7 @@ const Courses = require("../models/Course");
 const path = require("path");
 const multer = require("multer");
 const {body, check, validationResult } = require('express-validator');
+const {userAuth, checkRole } = require("../utils/Auth");
 
 const storage = multer.diskStorage({
     destination: "./public/uploads/",
@@ -17,9 +18,11 @@ const storage = multer.diskStorage({
  }).single("myImage");
  
 
- router.post('/addcourse', function (req, res) {
+ router.post('/addcourse',userAuth,
+ checkRole(["superadmin"]), function (req, res) {
 
     upload(req, res, function (err) {
+    
       
        const course = new Courses({
           title:req.body.title,
@@ -41,13 +44,15 @@ const storage = multer.diskStorage({
     const data=await Courses.find({});
     res.send(data);
  })
- router.delete('/deletecourse/:id',async(req,res)=>{
+ router.delete('/deletecourse/:id',userAuth,
+ checkRole(["superadmin"]),async(req,res)=>{
    
    const data=await Courses.deleteOne({_id:req.params.id});
    res.send(data);
 })
 
-router.post('/editcourse/:id', function (req, res) {
+router.post('/editcourse/:id', userAuth,
+checkRole(["superadmin"]),function (req, res) {
 
    upload(req, res,async (err) =>{
       

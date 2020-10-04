@@ -37,48 +37,69 @@ const userRegister = async (userDets, role, res) => {
       SECRET,
       { expiresIn: "1 days" }
     );
-    const newUser = new User({
-      ...userDets,
-      password,
-      role,
-      activeToken
-    });
-
-    await newUser.save();
-    try {
-     
-      var transporter =  nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'tenminuteversity@gmail.com',
-          pass: PASSWORD
-        }
-      });
-      
-      var link = 'http://localhost:5000/api/users/active/'
-                           +activeToken;
-      var mailOptions = {
-        from: 'tenminuteversity@gmail.com',
-        to: userDets.email,
-        subject: 'Welcome',
-        html: 'Please click <a href="' + link + '"> here </a> to activate your account.'
-      };
-      
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-    } catch (error) {
-      
-    }
    
-    return res.status(201).json({
-      message: "Hurry! now you are successfully registred. Please  login.",
-      success: true
+   try{
+    var transporter = await nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'tenminuteversity@gmail.com',
+        pass: '3tabikal'
+      }
     });
+    
+    var link = 'http://localhost:5000/api/users/active/'
+                         +activeToken;
+    var mailOptions = {
+      from: 'tenminuteversity@gmail.com',
+      to: userDets.email,
+      subject: 'Welcome',
+      html: 'Please click <a href="' + link + '"> here </a> to activate your account.'
+    };
+    
+await  transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        return res.status(400).json({
+          message: "Unable to create your account.",
+          success: false
+        });
+        console.log(error);
+      } else {
+        const newUser = new User({
+          ...userDets,
+          password,
+          role,
+          activeToken
+        });
+    
+         newUser.save().then(data=>{
+          console.log('Email sent: ' + info.response);
+          return res.status(201).json({
+            message: "Hurry! now you are successfully registred. Please  login.",
+            success: true
+          });
+         }).catch(er=>{
+          return res.status(400).json({
+            message: "Unable to create your account.",
+            success: false
+          });
+         })
+       
+      }
+    });
+ 
+   }
+     
+      catch(errror){
+        return res.status(500).json({
+          message: "Unable to create your account.",
+          success: false
+        });
+      }
+      
+   
+  
   } catch (err) {
     // Implement logger function (winston)
     return res.status(500).json({
@@ -94,12 +115,13 @@ const userRegister = async (userDets, role, res) => {
 const userLogin = async (userCreds, role, res) => {
   let { username, password } = userCreds;
   // First Check if the username is in the database
+
   const user = await User.findOne({ username });
  
 
   if (!user) {
     return res.status(404).json({
-      message: "Username is not found. Invalid login credentials.",
+      message: "Username is not found. Invalid credentials.",
       success: false
     });
   }
@@ -232,14 +254,35 @@ const validateUsername = async username => {
 /**
  * @DESC Passport middleware
  */
-const userAuth = passport.authenticate("jwt", { session: false });
+// const userAuth = passport.authenticate("jwt", { session: false });
+const userAuth=(req,res,next)=>{
+  const mytoken=req.header('auth').split(' ');
+  
+  if (mytoken[1]) {
+    return jwt.verify(mytoken[1], SECRET, function(err, decoded) {
+        if (err) {
+            return res.json({
+                success: false,
+                message: "Failed to authenticate token.",
+            });
+        }
+        req.user = decoded;
+        return next();
+    });
+}
+return res.json({
+  success: false,
+  message: "Failed to authenticate.",
+});
+}
+
 
 /**
  * @DESC Check Role Middleware
  */
 const checkRole = roles => (req, res, next) =>
   !roles.includes(req.user.role)
-    ? res.status(401).json("Unauthorized")
+    ? res.status(401).json("Unauthorize")
     : next();
 
 const validateEmail = async email => {

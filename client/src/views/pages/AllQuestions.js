@@ -59,7 +59,8 @@ class AllQuestions extends Component {
     "Type":this.state.type},{
       headers:{
         'Accept':'application/json',
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data=>{
       this.setState({

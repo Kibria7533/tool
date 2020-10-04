@@ -5,6 +5,8 @@ import './scss/style.scss';
 
 import Logout from './views/pages/Logout';
 import ProtectedRoute from './ProtectedRoute';
+import Superadminprotected from './Superadminprotected';
+import Writterprotected from './Writterprotected';
 import Adminregister from './views/pages/Adminregister';
 import Adminlogin from './views/pages/Adminlogin';
 import Superadminlogin from './views/pages/Superadminlogin';
@@ -59,22 +61,22 @@ class App extends Component {
           <Route  path="/adminlogin"exact  component={Adminlogin} />
           <Route  path="/Superadminlogin"exact  component={Superadminlogin} />
 +         <Route  path="/topic/:html" exact component={Body} />
-          <Route  path="/writterdashboard"exact  component={WritterDashboard} />
-          <Route  path="/superadminforms" exact component={Forms} />
-          <Route  path="/writerforms" exact component={PostsForms} />
-          <Route  path="/SupperAdminDashboard" exact component={SupperAdminDashboard} />
-          <Route  path="/Supperadmintables" exact component={Superadmintables} />
-          <Route  path="/Topicstable" exact component={Topicstable} />
-          <Route  path="/getcomment" exact component={Getallcomments} />
-          <Route  path="/usersinfo" exact component={Usersinfo} />
-          <Route  path="/writter" exact component={writters} />
-          <Route  path="/writteraplicant" exact component={writteraplicants} />
+          <Writterprotected  path="/writterdashboard"exact  component={WritterDashboard} />
+          <Superadminprotected  path="/superadminforms" exact component={Forms} />
+          <Writterprotected  path="/writerforms" exact component={PostsForms} />
+          <Superadminprotected  path="/SupperAdminDashboard" exact component={SupperAdminDashboard} />
+          <Superadminprotected  path="/Supperadmintables" exact component={Superadmintables} />
+          <Superadminprotected  path="/Topicstable" exact component={Topicstable} />
+          <Superadminprotected  path="/getcomment" exact component={Getallcomments} />
+          <Superadminprotected  path="/usersinfo" exact component={Usersinfo} />
+          <Superadminprotected  path="/writter" exact component={writters} />
+          <Superadminprotected  path="/writteraplicant" exact component={writteraplicants} />
           <Route  path="/modal" exact component={Modals} />
           <Route  path="/makequestion"exact  component={makequestion} />
-          <Route path="/PostQuestion" exact component={PostQuestion}/>
-          <Route path="/AllQuestion" exact component={AllQuestions}/>
-          <Route path="/homeinfo" exact component={Homeinfo}/>
-          <Route path="/teachers" exact component={Teachersinfo}/>
+          <Superadminprotected path="/PostQuestion" exact component={PostQuestion}/>
+          <Superadminprotected path="/AllQuestion" exact component={AllQuestions}/>
+          <Superadminprotected path="/homeinfo" exact component={Homeinfo}/>
+          <Superadminprotected path="/teachers" exact component={Teachersinfo}/>
         </Switch>
 
       </BrowserRouter>

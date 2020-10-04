@@ -75,7 +75,8 @@ class PostQuestion extends React.Component {
 
     const config = {
       headers: {
-        'content-type': 'multipart/form-data'
+        'content-type': 'multipart/form-data',
+        'auth':localStorage.getItem('auth')
       }
     };
     axios.post("/upload", formData, config)

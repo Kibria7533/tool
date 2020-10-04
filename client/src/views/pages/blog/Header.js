@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {  NavLink } from 'react-router-dom';
 
+
 import axios from 'axios';
 
 class Header extends Component {
@@ -16,7 +17,8 @@ class Header extends Component {
     await axios.get(`http://localhost:5000/allmenus`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       if (data.data.length)
@@ -143,7 +145,12 @@ class Header extends Component {
     <button className="dropdown-item" type="button"><NavLink  to="/userregister">User Register</NavLink></button>
     <button className="dropdown-item" type="button"><NavLink  to="/adminregister">Become Writter?</NavLink></button>
     <button className="dropdown-item" type="button"><NavLink  to="/adminlogin">Writter Login</NavLink></button>
+    <button className="dropdown-item" type="button"><NavLink  to="/writterdashboard">Writter Dashboard</NavLink></button>
+    <button className="dropdown-item" type="button"><NavLink  to="/Superadminlogin">Admin Login</NavLink></button>
+    <button className="dropdown-item" type="button"><NavLink  to="/SupperAdminDashboard">Admin Dashboard</NavLink></button>
+    <button className="dropdown-item" type="button"><NavLink  to="/logout">Log Out</NavLink></button>
   </div>
+  
             </div>
 
  

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from './blog/Header';
 import {
   CButton,
   CCard,
@@ -18,6 +19,7 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { Redirect } from 'react-router-dom';
 
 class adminlogin extends Component
  {
@@ -27,6 +29,7 @@ class adminlogin extends Component
       username:"",
       password:"",
       mesg:"",
+      redirect: false,
     
     }
   }
@@ -47,8 +50,11 @@ formsubmit=async (data)=>{
       'Content-Type':'application/json'
     }
   }).then(data=>{
-    localStorage.setItem('auth',data.data);
-    this.props.history.push("/");
+    localStorage.setItem('auth',data.data.token);
+    localStorage.setItem('userrole',data.data.role);
+    localStorage.setItem('username',data.data.username);
+    console.log(data.data);
+    this.setState({redirect:true});
   }).catch(err=>{
     this.setState({mesg:err.response.data.message})
     this.notify();
@@ -57,7 +63,12 @@ formsubmit=async (data)=>{
 }
 
    render(){
+    if (this.state.redirect) {
+      return (<Redirect to={{ pathname: '/SupperAdminDashboard' }} />)
+    }
     return (
+      <div>
+        <Header/>
       <div className="c-app c-default-layout flex-row align-items-center">
         <CContainer>
           <CRow className="justify-content-center">
@@ -115,6 +126,7 @@ formsubmit=async (data)=>{
             </CCol>
           </CRow>
         </CContainer>
+      </div>
       </div>
     )
    }

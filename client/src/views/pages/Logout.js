@@ -5,9 +5,13 @@ class Logout extends React.Component {
     render() {
 
         localStorage.removeItem('auth');
+        localStorage.removeItem('userrole');
+        localStorage.removeItem('username');
+        localStorage.clear(); 
+        
 
         return (
-            <Redirect to={{ pathname: '/login' }} />
+            <Redirect to='/' />
         );
     }
 }

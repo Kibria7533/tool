@@ -65,13 +65,19 @@ class Register extends Component {
         'Content-Type': 'application/json'
       }
     }).then(re=>{
-         
-      this.setState({ redirecttocheck: true })
+         console.log(re.data)
+         if(re.data.success)
+        this.setState({ redirecttocheck: true })
+        if(!re.data.success)
+        this.setState({error:'Something went wrong'})
+       
+
 
     }).catch(err=>{
+      console.log(err)
       this.setState({error:err.response.data.message.msg})
       this.notify();
-     console.log(err.response.data.message.msg)
+     
    
 
     })

@@ -19,7 +19,8 @@ class writteraplicants extends Component {
        await axios.get(`http://localhost:5000/api/users/getallwritteraplicant`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(reletedval => {
             // console.log(reletedval.data);
@@ -37,7 +38,8 @@ class writteraplicants extends Component {
        await axios.post(`http://localhost:5000/api/users/deletewritterapplicant`,{"id":id}, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
             }
         }).then(data => {
             // console.log(reletedval.data);
@@ -53,7 +55,8 @@ class writteraplicants extends Component {
         await axios.post(`http://localhost:5000/api/users/writterapplicant_to_writter`,{"id":id}, {
              headers: {
                  'Accept': 'application/json',
-                 'Content-Type': 'application/json'
+                 'Content-Type': 'application/json',
+                 'auth':localStorage.getItem('auth')
              }
          }).then(data => {
              // console.log(reletedval.data);

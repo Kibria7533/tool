@@ -14,7 +14,8 @@ class Topicstable extends Component {
     await axios.get(`http://localhost:5000/allmenus`, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       if (data.data[0].menus.length)
@@ -39,7 +40,8 @@ class Topicstable extends Component {
     await axios.post(`http://localhost:5000/deleteasimplemenue`, { "topic": topic }, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(async (data) => {
       this.componentDidMount();
@@ -47,7 +49,8 @@ class Topicstable extends Component {
       await axios.post(`http://localhost:5000/removetopic`, { "Topic": topic }, {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth':localStorage.getItem('auth')
         }
       }).then(data => {
 
@@ -67,7 +70,8 @@ class Topicstable extends Component {
             await axios.post(`http://localhost:5000/removetopic`, { "Topic": subdata }, {
               headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'auth':localStorage.getItem('auth')
               }
             })
           })
@@ -78,7 +82,8 @@ class Topicstable extends Component {
     await axios.post(`http://localhost:5000/delete_a_subholeder`, { "subholder": submenholder }, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       this.componentDidMount();
@@ -91,14 +96,16 @@ class Topicstable extends Component {
     await axios.post(`http://localhost:5000/delete_a_sub_submenu`, { submenuholder, submenu }, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(async (data) => {
       this.componentDidMount();
       await axios.post(`http://localhost:5000/removetopic`, { "Topic": submenu }, {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth':localStorage.getItem('auth')
         }
       }).then(data => {
 
@@ -119,7 +126,8 @@ class Topicstable extends Component {
           await axios.post(`http://localhost:5000/removetopic`, { "Topic": subdata }, {
             headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'auth':localStorage.getItem('auth')
             }
           })
         })
@@ -130,7 +138,8 @@ class Topicstable extends Component {
     await axios.post(`http://localhost:5000/delete_a_megaholder`, { megaholder }, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(data => {
       this.componentDidMount();
@@ -142,14 +151,16 @@ class Topicstable extends Component {
     await axios.post(`http://localhost:5000/delete_a_sub_megamenu`, { megamenuholder, submenu }, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth':localStorage.getItem('auth')
       }
     }).then(async (data) => {
       this.componentDidMount();
       await axios.post(`http://localhost:5000/removetopic`, { "Topic": submenu }, {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'auth':localStorage.getItem('auth')
         }
       }).then(data => {
 
