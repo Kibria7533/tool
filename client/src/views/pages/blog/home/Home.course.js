@@ -17,7 +17,7 @@ class Homecourse extends Component {
 
       }
   }).then(data=> {
-    
+    if(data.data.length)
       this.setState({data:data.data})
 
   }).catch(err => {

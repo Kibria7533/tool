@@ -206,7 +206,7 @@ router.post('/forgotpassordorusername', async (req, res) => {
       }
     });
 
-    var link = `http://localhost:3000/forgotpassword/${forgetpasswordToken}`;
+    var link = `https://tooltool.herokuapp.com/forgotpassword/${forgetpasswordToken}`;
     let username = emailExist.username;
     var mailOptions = {
       from: 'tenminuteversity@gmail.com',

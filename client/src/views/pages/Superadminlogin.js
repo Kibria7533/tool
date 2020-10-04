@@ -53,7 +53,7 @@ formsubmit=async (data)=>{
     localStorage.setItem('auth',data.data.token);
     localStorage.setItem('userrole',data.data.role);
     localStorage.setItem('username',data.data.username);
-    console.log(data.data);
+   
     this.setState({redirect:true});
   }).catch(err=>{
     this.setState({mesg:err.response.data.message})
