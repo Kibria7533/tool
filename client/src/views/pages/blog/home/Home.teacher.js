@@ -13,7 +13,7 @@ class Hometeacher extends Component {
                 'auth':localStorage.getItem('auth')
             }
         }).then(data => {
-         
+            if(data.data.length)
             this.setState({ data: data.data });
 
         }).catch(err => {
